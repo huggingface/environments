@@ -1,11 +1,11 @@
 # Environments
 
-A simple Python package demonstrating the basic structure for a pip installable package.
+A simple framework to create and deploy custom environments on the Hugging Face Hub with MCP.
 
 ## Installation
 
 ```bash
-pip install git+http://github.com/huggingface/environments.git
+pip install git+https://github.com/huggingface/environments.git
 ```
 
 ## Create your Environment
@@ -37,5 +37,19 @@ import gradio as gr
 with gr.Blocks() as demo:
     register_env(CountToTen)
 
-demo.launch(mcp_server_name=True)
+demo.launch(mcp_server=True)
+```
+
+Check this space: https://huggingface.co/spaces/qgallouedec/counter
+
+## Load and use your environment
+
+```python
+>>> from environments import load
+>>> env = load("qgallouedec/counter")
+Loaded as API: https://qgallouedec-counter.hf.space/ ✔
+>>> env.reset()
+('Counter reset to 0', 0.0, False)
+>>> env.step()
+('Counter is now 1', 1.0, False)
 ```
